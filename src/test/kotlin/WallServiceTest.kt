@@ -1,11 +1,13 @@
 import junit.framework.TestCase.*
+import org.junit.Before
 import org.junit.Test
 
 
 class WallServiceTest {
 
+
     @Test
-    fun WallServiceUpdateADD () {
+    fun WallServiceUpdateADD() {
         val post = Post(
             id = 1,
             toId = 1,
@@ -22,37 +24,42 @@ class WallServiceTest {
 
         assertTrue(post.id > 0)
     }
-
-
-
+    @Before
+    fun clearBeforeTestTrue() {
+        WallService.clear()
+    }
 
     @Test
-    fun WallServiceUpdateTrue () {
-val service = WallService
-        service.add(Post(
-            id = 1,
-            toId = 1,
-            fromId = 1,
-            createdBy = 1,
-            date = 1631302800,
-            text = "Привет, это первый пост!",
-            replyOwnerId = 1,
-            replyPostId = 1,
-            friendsOnly = true
-        ))
-        service.add(Post(
-            id = 2,
-            toId = 1,
-            fromId = 1,
-            createdBy = 1,
-            date = 1631302800,
-            text = "Привет, это первый пост!",
-            replyOwnerId = 1,
-            replyPostId = 1,
-            friendsOnly = true
-        ))
-        val update = Post(
+    fun WallServiceUpdateTrue() {
+        val service = WallService
+        service.add(
+            Post(
                 id = 1,
+                toId = 1,
+                fromId = 1,
+                createdBy = 1,
+                date = 1631302800,
+                text = "Привет, это первый пост!",
+                replyOwnerId = 1,
+                replyPostId = 1,
+                friendsOnly = true
+            )
+        )
+        service.add(
+            Post(
+                id = 2,
+                toId = 1,
+                fromId = 1,
+                createdBy = 1,
+                date = 1631302800,
+                text = "Привет, это первый пост!",
+                replyOwnerId = 1,
+                replyPostId = 1,
+                friendsOnly = true
+            )
+        )
+        val update = Post(
+            id = 1,
             toId = 1,
             fromId = 1,
             createdBy = 1,
@@ -68,32 +75,39 @@ val service = WallService
         assertTrue(result)
     }
 
-
+    @Before
+    fun clearBeforeTestFalse() {
+        WallService.clear()
+    }
     @Test
-    fun WallServiceUpdateFalse () {
+    fun WallServiceUpdateFalse() {
         val service = WallService
-        service.add(Post(
-            id = 1,
-            toId = 1,
-            fromId = 1,
-            createdBy = 1,
-            date = 1631302800,
-            text = "Привет, это первый пост!",
-            replyOwnerId = 1,
-            replyPostId = 1,
-            friendsOnly = true
-        ))
-        service.add(Post(
-            id = 2,
-            toId = 1,
-            fromId = 1,
-            createdBy = 1,
-            date = 1631302800,
-            text = "Привет, это первый пост!",
-            replyOwnerId = 1,
-            replyPostId = 1,
-            friendsOnly = true
-        ))
+        service.add(
+            Post(
+                id = 1,
+                toId = 1,
+                fromId = 1,
+                createdBy = 1,
+                date = 1631302800,
+                text = "Привет, это первый пост!",
+                replyOwnerId = 1,
+                replyPostId = 1,
+                friendsOnly = true
+            )
+        )
+        service.add(
+            Post(
+                id = 2,
+                toId = 1,
+                fromId = 1,
+                createdBy = 1,
+                date = 1631302800,
+                text = "Привет, это первый пост!",
+                replyOwnerId = 1,
+                replyPostId = 1,
+                friendsOnly = true
+            )
+        )
         val update = Post(
             id = 10,
             toId = 1,
