@@ -13,13 +13,17 @@ data class Post(
 
 // Объект-сервис для работы с записями
 object WallService {
-    private var posts = arrayListOf<Post>() // массив, хранящий все посты
-    private var nextId = 0 // переменная для хранения следующего уникального id
+        private var posts = emptyArray<Post>() // массив, хранящий все посты
+        private var nextId = 1 // переменная для хранения следующего уникального id
+
+//        private var posts = arrayListOf<Post>() // массив, хранящий все посты
+//    private var nextId = 0 // переменная для хранения следующего уникального id
 
     // метод для добавления поста в массив
     fun add(post: Post): Post {
         val newPost = post.copy(id = nextId) // копируем пост и присваиваем ему новый id
-        posts.add(newPost) // добавляем пост в массив
+        posts += newPost // добавляем пост в массив
+        //posts.add(newPost) // добавляем пост в массив
         nextId++ // увеличиваем счетчик следующего id
         return newPost // возвращаем пост с новым id
     }
