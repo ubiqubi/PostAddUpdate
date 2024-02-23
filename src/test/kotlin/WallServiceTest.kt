@@ -1,11 +1,15 @@
 import junit.framework.TestCase.*
+import org.junit.Before
 import org.junit.Test
 
 
 class WallServiceTest {
 
+
     @Test
-    fun WallServiceUpdateADD () {
+    fun WallServiceUpdateADD() {
+        val likes = Likes(1, true, true, true)
+        val comments = Comments(1, true, true, true, true)
         val post = Post(
             id = 1,
             toId = 1,
@@ -15,7 +19,13 @@ class WallServiceTest {
             text = "Привет, это первый пост!",
             replyOwnerId = 1,
             replyPostId = 1,
-            friendsOnly = true
+            friendsOnly = true,
+            likes = likes,
+            comments = comments,
+<<<<<<< HEAD
+=======
+            original = null
+>>>>>>> ed9a2e7298ea008e92e8fd0177c229b90dedf3de
         )
         val service = WallService
         service.add(post)
@@ -23,36 +33,56 @@ class WallServiceTest {
         assertTrue(post.id > 0)
     }
 
-
-
+    @Before
+    fun clearBeforeTestTrue() {
+        WallService.clear()
+    }
 
     @Test
-    fun WallServiceUpdateTrue () {
-val service = WallService
-        service.add(Post(
-            id = 1,
-            toId = 1,
-            fromId = 1,
-            createdBy = 1,
-            date = 1631302800,
-            text = "Привет, это первый пост!",
-            replyOwnerId = 1,
-            replyPostId = 1,
-            friendsOnly = true
-        ))
-        service.add(Post(
-            id = 2,
-            toId = 1,
-            fromId = 1,
-            createdBy = 1,
-            date = 1631302800,
-            text = "Привет, это первый пост!",
-            replyOwnerId = 1,
-            replyPostId = 1,
-            friendsOnly = true
-        ))
-        val update = Post(
+    fun WallServiceUpdateTrue() {
+        val likes = Likes(1, true, true, true)
+        val comments = Comments(1, true, true, true, true)
+        val service = WallService
+        service.add(
+            Post(
                 id = 1,
+                toId = 1,
+                fromId = 1,
+                createdBy = 1,
+                date = 1631302800,
+                text = "Привет, это первый пост!",
+                replyOwnerId = 1,
+                replyPostId = 1,
+                friendsOnly = true,
+                likes = likes,
+                comments = comments,
+<<<<<<< HEAD
+=======
+                original = null
+>>>>>>> ed9a2e7298ea008e92e8fd0177c229b90dedf3de
+            )
+        )
+        service.add(
+            Post(
+                id = 2,
+                toId = 1,
+                fromId = 1,
+                createdBy = 1,
+                date = 1631302800,
+                text = "Привет, это первый пост!",
+                replyOwnerId = 1,
+                replyPostId = 1,
+                friendsOnly = true,
+                likes = likes,
+                comments = comments,
+<<<<<<< HEAD
+=======
+                original = null
+>>>>>>> ed9a2e7298ea008e92e8fd0177c229b90dedf3de
+            )
+        )
+        val update = Post(
+            id = 1,
             toId = 1,
             fromId = 1,
             createdBy = 1,
@@ -60,7 +90,13 @@ val service = WallService
             text = "Привет, это обновленный пост!",
             replyOwnerId = 1,
             replyPostId = 1,
-            friendsOnly = true
+            friendsOnly = true,
+            likes = likes,
+            comments = comments,
+<<<<<<< HEAD
+=======
+            original = null
+>>>>>>> ed9a2e7298ea008e92e8fd0177c229b90dedf3de
         )
 
         val result = service.update(update)
@@ -70,30 +106,48 @@ val service = WallService
 
 
     @Test
-    fun WallServiceUpdateFalse () {
+    fun WallServiceUpdateFalse() {
+        val likes = Likes(1, true, true, true)
+        val comments = Comments(1, true, true, true, true)
         val service = WallService
-        service.add(Post(
-            id = 1,
-            toId = 1,
-            fromId = 1,
-            createdBy = 1,
-            date = 1631302800,
-            text = "Привет, это первый пост!",
-            replyOwnerId = 1,
-            replyPostId = 1,
-            friendsOnly = true
-        ))
-        service.add(Post(
-            id = 2,
-            toId = 1,
-            fromId = 1,
-            createdBy = 1,
-            date = 1631302800,
-            text = "Привет, это первый пост!",
-            replyOwnerId = 1,
-            replyPostId = 1,
-            friendsOnly = true
-        ))
+        service.add(
+            Post(
+                id = 1,
+                toId = 1,
+                fromId = 1,
+                createdBy = 1,
+                date = 1631302800,
+                text = "Привет, это первый пост!",
+                replyOwnerId = 1,
+                replyPostId = 1,
+                friendsOnly = true,
+                likes = likes,
+                comments = comments,
+<<<<<<< HEAD
+=======
+                original = null
+>>>>>>> ed9a2e7298ea008e92e8fd0177c229b90dedf3de
+            )
+        )
+        service.add(
+            Post(
+                id = 2,
+                toId = 1,
+                fromId = 1,
+                createdBy = 1,
+                date = 1631302800,
+                text = "Привет, это первый пост!",
+                replyOwnerId = 1,
+                replyPostId = 1,
+                friendsOnly = true,
+                likes = likes,
+                comments = comments,
+<<<<<<< HEAD
+=======
+                original = null
+>>>>>>> ed9a2e7298ea008e92e8fd0177c229b90dedf3de
+            )
+        )
         val update = Post(
             id = 10,
             toId = 1,
@@ -103,7 +157,13 @@ val service = WallService
             text = "Привет, это обновленный пост!",
             replyOwnerId = 1,
             replyPostId = 1,
-            friendsOnly = true
+            friendsOnly = true,
+            likes = likes,
+            comments = comments,
+<<<<<<< HEAD
+=======
+            original = null
+>>>>>>> ed9a2e7298ea008e92e8fd0177c229b90dedf3de
         )
 
         val result = service.update(update)
