@@ -22,7 +22,8 @@ class WallServiceTest {
             friendsOnly = true,
             likes = likes,
             comments = comments,
-            original = null
+            original = null,
+            attachments = emptyArray()
         )
         val service = WallService
         service.add(post)
@@ -53,7 +54,8 @@ class WallServiceTest {
                 friendsOnly = true,
                 likes = likes,
                 comments = comments,
-                original = null
+                original = null,
+                attachments = emptyArray()
             )
         )
         service.add(
@@ -69,7 +71,8 @@ class WallServiceTest {
                 friendsOnly = true,
                 likes = likes,
                 comments = comments,
-                original = null
+                original = null,
+                attachments = emptyArray()
             )
         )
         val update = Post(
@@ -84,7 +87,8 @@ class WallServiceTest {
             friendsOnly = true,
             likes = likes,
             comments = comments,
-            original = null
+            original = null,
+            attachments = emptyArray()
         )
 
         val result = service.update(update)
@@ -111,7 +115,8 @@ class WallServiceTest {
                 friendsOnly = true,
                 likes = likes,
                 comments = comments,
-                original = null
+                original = null,
+                attachments = emptyArray()
             )
         )
         service.add(
@@ -127,7 +132,8 @@ class WallServiceTest {
                 friendsOnly = true,
                 likes = likes,
                 comments = comments,
-                original = null
+                original = null,
+                attachments = emptyArray()
             )
         )
         val update = Post(
@@ -142,7 +148,8 @@ class WallServiceTest {
             friendsOnly = true,
             likes = likes,
             comments = comments,
-            original = null
+            original = null,
+            attachments = emptyArray()
         )
 
         val result = service.update(update)

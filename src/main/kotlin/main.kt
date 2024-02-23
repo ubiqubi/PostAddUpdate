@@ -13,8 +13,14 @@ data class Post(
     val friendsOnly: Boolean, // если запись была создана с опцией "только для друзей"
     val original: Post?,
     val likes: Likes,
-    val comments: Comments
+    val comments: Comments,
+    val attachments: Array<Attachment>, // Массив attachments
+
 )
+
+interface Attachment {
+    val type: String
+}
 
 // Класс, представляющий комментарии
 data class Comments(
@@ -34,6 +40,64 @@ data class Likes(
     val canPublish: Boolean // информация о том, может ли текущий пользователь сделать репост записи
 )
 
+data class Photo(
+    val id: Int,
+    val album_id: Int,
+    val owner_id: Int,
+    val user_id: Int,
+    val text: String,
+    val date: Int,
+    val width: Int,
+    val height: Int
+) : Attachment {
+    override val type = "photo"
+}
+data class Audio(
+    val id: Int,
+    val owner_id: Int,
+    val artist: String,
+    val title: String,
+    val duration: Int,
+    val url: String,
+    val lyrics_id: Int,
+    val album_id: Int,
+    val genre_id: Int,
+    val date: Int,
+    val no_search: Int,
+    val is_hq: Int
+) : Attachment {
+    override val type = "audio"
+}
+data class Video(
+    val id: Int,
+    val owner_id: Int,
+    val title: String,
+    val description: String,
+    val duration: Int
+) : Attachment {
+    override val type = "video"
+}
+data class Document(
+    val id: Int,
+    val owner_id: Int,
+    val title: String,
+    val size: Int,
+    val ext: String,
+    val url: String,
+    val date: Int,
+) : Attachment {
+    override val type = "document"
+}
+data class Link(
+    val url: String,
+    val title: String,
+    val caption: String,
+    val description: String,
+    val photo: Any,
+    val preview_url: String
+) : Attachment {
+    override val type = "link"
+}
 // Объект-сервис для работы с записями
 object WallService {
     private var posts = emptyArray<Post>() // массив, хранящий все посты
@@ -69,16 +133,27 @@ object WallService {
                 friendsOnly = post.friendsOnly,
                 likes = post.likes,
                 comments = post.comments,
-
+                attachments = post.attachments
                 )
             return true // возвращаем true, чтобы указать успешное обновление записи
         }
 
         return false // возвращаем false, если запись с таким id не найдена
     }
+
 }
+// Функция добавления Файла в архив
 
 fun main() {
+  // Добавляем файлы в архив к посту
+    val newAttachments: Array<Attachment> = arrayOf(
+        Photo(1, 1, 1, 1, "Photo 1", 123456789, 800, 600),
+        Audio(2, 2, "Artist 1", "Title 1", 300, "http://audio-url.com", 1, 1, 1, 123456789, 0, 1),
+        Video(3, 3, "Title 1", "Description 1", 600),
+        Document(4, 4, "Document 1", 1024, "txt", "http://document-url.com", 123456789),
+        Link("http://link-url.com", "Link 1", "Caption 1", "Description 1", Any(), "http://preview-url.com")
+    )
+
     val likes = Likes(1, true, true, true)
     val comments = Comments(1, true, true, true, true)
     // Пример использования методов add и update
@@ -94,14 +169,17 @@ fun main() {
         friendsOnly = true,
         likes = likes,
         comments = comments,
-        original = null
+        original = null,
+        attachments = newAttachments
     )
+
 
     // Добавляем пост
     val addedPost = WallService.add(post1)
     println("Добавленный пост: ${addedPost.text}")
 
     // Обновляем пост
+
     val updatedPost = addedPost.copy(text = "Привет! Это обновленный пост.")
     val isUpdated = WallService.update(updatedPost)
 
