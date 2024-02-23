@@ -8,6 +8,8 @@ class WallServiceTest {
 
     @Test
     fun WallServiceUpdateADD() {
+        val likes = Likes (1,true,true,true)
+        val comments = Comments  (1,true,true,true,true)
         val post = Post(
             id = 1,
             toId = 1,
@@ -17,7 +19,10 @@ class WallServiceTest {
             text = "Привет, это первый пост!",
             replyOwnerId = 1,
             replyPostId = 1,
-            friendsOnly = true
+            friendsOnly = true,
+            likes = likes,
+            comments = comments,
+           
         )
         val service = WallService
         service.add(post)
@@ -31,6 +36,8 @@ class WallServiceTest {
 
     @Test
     fun WallServiceUpdateTrue() {
+        val likes = Likes (1,true,true,true)
+        val comments = Comments  (1,true,true,true,true)
         val service = WallService
         service.add(
             Post(
@@ -42,7 +49,10 @@ class WallServiceTest {
                 text = "Привет, это первый пост!",
                 replyOwnerId = 1,
                 replyPostId = 1,
-                friendsOnly = true
+                friendsOnly = true,
+                likes = likes,
+                comments = comments,
+               
             )
         )
         service.add(
@@ -55,7 +65,10 @@ class WallServiceTest {
                 text = "Привет, это первый пост!",
                 replyOwnerId = 1,
                 replyPostId = 1,
-                friendsOnly = true
+                friendsOnly = true,
+                likes = likes,
+                comments = comments,
+               
             )
         )
         val update = Post(
@@ -67,7 +80,10 @@ class WallServiceTest {
             text = "Привет, это обновленный пост!",
             replyOwnerId = 1,
             replyPostId = 1,
-            friendsOnly = true
+            friendsOnly = true,
+            likes = likes,
+            comments = comments,
+           
         )
 
         val result = service.update(update)
@@ -75,12 +91,11 @@ class WallServiceTest {
         assertTrue(result)
     }
 
-    @Before
-    fun clearBeforeTestFalse() {
-        WallService.clear()
-    }
+   
     @Test
     fun WallServiceUpdateFalse() {
+        val likes = Likes (1,true,true,true)
+        val comments = Comments  (1,true,true,true,true)
         val service = WallService
         service.add(
             Post(
@@ -92,7 +107,10 @@ class WallServiceTest {
                 text = "Привет, это первый пост!",
                 replyOwnerId = 1,
                 replyPostId = 1,
-                friendsOnly = true
+                friendsOnly = true,
+                likes = likes,
+                comments = comments,
+               
             )
         )
         service.add(
@@ -105,7 +123,10 @@ class WallServiceTest {
                 text = "Привет, это первый пост!",
                 replyOwnerId = 1,
                 replyPostId = 1,
-                friendsOnly = true
+                friendsOnly = true,
+                likes = likes,
+                comments = comments,
+               
             )
         )
         val update = Post(
@@ -117,7 +138,10 @@ class WallServiceTest {
             text = "Привет, это обновленный пост!",
             replyOwnerId = 1,
             replyPostId = 1,
-            friendsOnly = true
+            friendsOnly = true,
+            likes = likes,
+            comments = comments,
+           
         )
 
         val result = service.update(update)

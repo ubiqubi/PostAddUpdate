@@ -8,7 +8,27 @@ data class Post(
     val text: String, // текст записи
     val replyOwnerId: Int, // идентификатор владельца записи, на которую была оставлена текущая
     val replyPostId: Int, // идентификатор записи, на которую была оставлена текущая
-    val friendsOnly: Boolean // если запись была создана с опцией "только для друзей"
+    val friendsOnly: Boolean, // если запись была создана с опцией "только для друзей"
+    val likes: Likes,
+    val comments: Comments
+)
+
+// Класс, представляющий комментарии
+data class Comments(
+    val count: Int, // количество комментариев
+    val canPost: Boolean, // информация о том, может ли текущий пользователь комментировать запись
+    val groupsCanPost: Boolean, // информация о том, могут ли сообщества комментировать запись
+    val canClose: Boolean, // может ли текущий пользователь закрыть комментарии к записи
+    val canOpen: Boolean // может ли текущий пользователь открыть комментарии к записи
+)
+
+
+// Класс, представляющий отметки "Мне нравится"
+data class Likes(
+    val count: Int, // число пользователей, которым понравилась запись
+    val userLikes: Boolean, // наличие отметки "мне нравится" от текущего пользователя
+    val canLike: Boolean, // информация о том, может ли текущий пользователь поставить отметку "мне нравится"
+    val canPublish: Boolean // информация о том, может ли текущий пользователь сделать репост записи
 )
 
 // Объект-сервис для работы с записями
@@ -43,7 +63,10 @@ object WallService {
                 text = post.text,
                 replyOwnerId = post.replyOwnerId,
                 replyPostId = post.replyPostId,
-                friendsOnly = post.friendsOnly
+                friendsOnly = post.friendsOnly,
+                likes = post.likes,
+                comments = post.comments,
+
             )
             return true // возвращаем true, чтобы указать успешное обновление записи
         }
@@ -53,6 +76,8 @@ object WallService {
 }
 
 fun main() {
+    val likes = Likes (1,true,true,true)
+    val comments = Comments  (1,true,true,true,true)
     // Пример использования методов add и update
     val post1 = Post(
         id = 1,
@@ -63,7 +88,9 @@ fun main() {
         text = "Привет, это первый пост!",
         replyOwnerId = 1,
         replyPostId = 1,
-        friendsOnly = true
+        friendsOnly = true,
+        likes = likes,
+        comments = comments,
     )
 
     // Добавляем пост
