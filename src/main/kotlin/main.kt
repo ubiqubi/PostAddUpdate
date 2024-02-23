@@ -9,7 +9,6 @@ data class Post(
     val replyOwnerId: Int, // идентификатор владельца записи, на которую была оставлена текущая
     val replyPostId: Int, // идентификатор записи, на которую была оставлена текущая
     val friendsOnly: Boolean, // если запись была создана с опцией "только для друзей"
-    val original: Post?,
     val likes: Likes,
     val comments: Comments
 )
@@ -67,12 +66,8 @@ object WallService {
                 friendsOnly = post.friendsOnly,
                 likes = post.likes,
                 comments = post.comments,
-<<<<<<< HEAD
-            )
-=======
-
                 )
->>>>>>> ed9a2e7298ea008e92e8fd0177c229b90dedf3de
+
             return true // возвращаем true, чтобы указать успешное обновление записи
         }
 
@@ -96,7 +91,6 @@ fun main() {
         friendsOnly = true,
         likes = likes,
         comments = comments,
-        original = null
     )
 
     // Добавляем пост

@@ -22,10 +22,7 @@ class WallServiceTest {
             friendsOnly = true,
             likes = likes,
             comments = comments,
-<<<<<<< HEAD
-=======
-            original = null
->>>>>>> ed9a2e7298ea008e92e8fd0177c229b90dedf3de
+
         )
         val service = WallService
         service.add(post)
@@ -56,10 +53,7 @@ class WallServiceTest {
                 friendsOnly = true,
                 likes = likes,
                 comments = comments,
-<<<<<<< HEAD
-=======
-                original = null
->>>>>>> ed9a2e7298ea008e92e8fd0177c229b90dedf3de
+
             )
         )
         service.add(
@@ -75,10 +69,7 @@ class WallServiceTest {
                 friendsOnly = true,
                 likes = likes,
                 comments = comments,
-<<<<<<< HEAD
-=======
-                original = null
->>>>>>> ed9a2e7298ea008e92e8fd0177c229b90dedf3de
+
             )
         )
         val update = Post(
@@ -93,10 +84,7 @@ class WallServiceTest {
             friendsOnly = true,
             likes = likes,
             comments = comments,
-<<<<<<< HEAD
-=======
-            original = null
->>>>>>> ed9a2e7298ea008e92e8fd0177c229b90dedf3de
+
         )
 
         val result = service.update(update)
@@ -123,10 +111,7 @@ class WallServiceTest {
                 friendsOnly = true,
                 likes = likes,
                 comments = comments,
-<<<<<<< HEAD
-=======
-                original = null
->>>>>>> ed9a2e7298ea008e92e8fd0177c229b90dedf3de
+
             )
         )
         service.add(
@@ -142,10 +127,7 @@ class WallServiceTest {
                 friendsOnly = true,
                 likes = likes,
                 comments = comments,
-<<<<<<< HEAD
-=======
-                original = null
->>>>>>> ed9a2e7298ea008e92e8fd0177c229b90dedf3de
+
             )
         )
         val update = Post(
@@ -160,10 +142,7 @@ class WallServiceTest {
             friendsOnly = true,
             likes = likes,
             comments = comments,
-<<<<<<< HEAD
-=======
-            original = null
->>>>>>> ed9a2e7298ea008e92e8fd0177c229b90dedf3de
+
         )
 
         val result = service.update(update)
