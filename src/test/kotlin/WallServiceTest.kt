@@ -8,8 +8,8 @@ class WallServiceTest {
 
     @Test
     fun WallServiceUpdateADD() {
-        val likes = Likes (1,true,true,true)
-        val comments = Comments  (1,true,true,true,true)
+        val likes = Likes(1, true, true, true)
+        val comments = Comments(1, true, true, true, true)
         val post = Post(
             id = 1,
             toId = 1,
@@ -22,13 +22,13 @@ class WallServiceTest {
             friendsOnly = true,
             likes = likes,
             comments = comments,
-           
         )
         val service = WallService
         service.add(post)
 
         assertTrue(post.id > 0)
     }
+
     @Before
     fun clearBeforeTestTrue() {
         WallService.clear()
@@ -36,8 +36,8 @@ class WallServiceTest {
 
     @Test
     fun WallServiceUpdateTrue() {
-        val likes = Likes (1,true,true,true)
-        val comments = Comments  (1,true,true,true,true)
+        val likes = Likes(1, true, true, true)
+        val comments = Comments(1, true, true, true, true)
         val service = WallService
         service.add(
             Post(
@@ -52,7 +52,6 @@ class WallServiceTest {
                 friendsOnly = true,
                 likes = likes,
                 comments = comments,
-               
             )
         )
         service.add(
@@ -68,7 +67,6 @@ class WallServiceTest {
                 friendsOnly = true,
                 likes = likes,
                 comments = comments,
-               
             )
         )
         val update = Post(
@@ -83,7 +81,6 @@ class WallServiceTest {
             friendsOnly = true,
             likes = likes,
             comments = comments,
-           
         )
 
         val result = service.update(update)
@@ -91,11 +88,11 @@ class WallServiceTest {
         assertTrue(result)
     }
 
-   
+
     @Test
     fun WallServiceUpdateFalse() {
-        val likes = Likes (1,true,true,true)
-        val comments = Comments  (1,true,true,true,true)
+        val likes = Likes(1, true, true, true)
+        val comments = Comments(1, true, true, true, true)
         val service = WallService
         service.add(
             Post(
@@ -110,7 +107,6 @@ class WallServiceTest {
                 friendsOnly = true,
                 likes = likes,
                 comments = comments,
-               
             )
         )
         service.add(
@@ -126,7 +122,6 @@ class WallServiceTest {
                 friendsOnly = true,
                 likes = likes,
                 comments = comments,
-               
             )
         )
         val update = Post(
@@ -141,7 +136,6 @@ class WallServiceTest {
             friendsOnly = true,
             likes = likes,
             comments = comments,
-           
         )
 
         val result = service.update(update)

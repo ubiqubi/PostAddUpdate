@@ -66,7 +66,6 @@ object WallService {
                 friendsOnly = post.friendsOnly,
                 likes = post.likes,
                 comments = post.comments,
-
             )
             return true // возвращаем true, чтобы указать успешное обновление записи
         }
@@ -76,8 +75,8 @@ object WallService {
 }
 
 fun main() {
-    val likes = Likes (1,true,true,true)
-    val comments = Comments  (1,true,true,true,true)
+    val likes = Likes(1, true, true, true)
+    val comments = Comments(1, true, true, true, true)
     // Пример использования методов add и update
     val post1 = Post(
         id = 1,
@@ -107,3 +106,17 @@ fun main() {
         println("Не удалось обновить пост с id ${updatedPost.id}")
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
