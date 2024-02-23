@@ -9,6 +9,7 @@ data class Post(
     val replyOwnerId: Int, // идентификатор владельца записи, на которую была оставлена текущая
     val replyPostId: Int, // идентификатор записи, на которую была оставлена текущая
     val friendsOnly: Boolean, // если запись была создана с опцией "только для друзей"
+    val original: Post?,
     val likes: Likes,
     val comments: Comments
 )
@@ -67,7 +68,7 @@ object WallService {
                 likes = post.likes,
                 comments = post.comments,
 
-            )
+                )
             return true // возвращаем true, чтобы указать успешное обновление записи
         }
 
@@ -76,8 +77,8 @@ object WallService {
 }
 
 fun main() {
-    val likes = Likes (1,true,true,true)
-    val comments = Comments  (1,true,true,true,true)
+    val likes = Likes(1, true, true, true)
+    val comments = Comments(1, true, true, true, true)
     // Пример использования методов add и update
     val post1 = Post(
         id = 1,
@@ -91,6 +92,7 @@ fun main() {
         friendsOnly = true,
         likes = likes,
         comments = comments,
+        original = null
     )
 
     // Добавляем пост
@@ -107,3 +109,17 @@ fun main() {
         println("Не удалось обновить пост с id ${updatedPost.id}")
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
