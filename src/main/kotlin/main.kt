@@ -67,7 +67,6 @@ object WallService {
                 likes = post.likes,
                 comments = post.comments,
                 )
-
             return true // возвращаем true, чтобы указать успешное обновление записи
         }
 

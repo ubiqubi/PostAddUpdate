@@ -22,7 +22,6 @@ class WallServiceTest {
             friendsOnly = true,
             likes = likes,
             comments = comments,
-
         )
         val service = WallService
         service.add(post)
@@ -53,7 +52,6 @@ class WallServiceTest {
                 friendsOnly = true,
                 likes = likes,
                 comments = comments,
-
             )
         )
         service.add(
@@ -69,7 +67,6 @@ class WallServiceTest {
                 friendsOnly = true,
                 likes = likes,
                 comments = comments,
-
             )
         )
         val update = Post(
@@ -84,7 +81,6 @@ class WallServiceTest {
             friendsOnly = true,
             likes = likes,
             comments = comments,
-
         )
 
         val result = service.update(update)
@@ -111,7 +107,6 @@ class WallServiceTest {
                 friendsOnly = true,
                 likes = likes,
                 comments = comments,
-
             )
         )
         service.add(
@@ -127,7 +122,6 @@ class WallServiceTest {
                 friendsOnly = true,
                 likes = likes,
                 comments = comments,
-
             )
         )
         val update = Post(
@@ -142,7 +136,6 @@ class WallServiceTest {
             friendsOnly = true,
             likes = likes,
             comments = comments,
-
         )
 
         val result = service.update(update)
