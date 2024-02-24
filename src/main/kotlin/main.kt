@@ -1,3 +1,4 @@
+import javax.lang.model.type.ArrayType
 
 
 // Код ниже представляет класс Post, который представляет пост.
@@ -40,6 +41,12 @@ data class Likes(
     val canPublish: Boolean // информация о том, может ли текущий пользователь сделать репост записи
 )
 
+data class PhotoAttachment(
+    val photo: Photo
+) : Attachment {
+    override val type = "photo"
+}
+
 data class Photo(
     val id: Int,
     val album_id: Int,
@@ -49,9 +56,14 @@ data class Photo(
     val date: Int,
     val width: Int,
     val height: Int
+)
+
+data class AudioAttachment(
+    val audio: Audio
 ) : Attachment {
-    override val type = "photo"
+    override val type = "audio"
 }
+
 data class Audio(
     val id: Int,
     val owner_id: Int,
@@ -65,18 +77,28 @@ data class Audio(
     val date: Int,
     val no_search: Int,
     val is_hq: Int
+)
+
+data class VideoAttachment(
+    val video: Video
 ) : Attachment {
-    override val type = "audio"
+    override val type = "video"
 }
+
 data class Video(
     val id: Int,
     val owner_id: Int,
     val title: String,
     val description: String,
     val duration: Int
+)
+
+data class DocumentAttachment(
+    val document: Document
 ) : Attachment {
-    override val type = "video"
+    override val type = "document"
 }
+
 data class Document(
     val id: Int,
     val owner_id: Int,
@@ -85,9 +107,14 @@ data class Document(
     val ext: String,
     val url: String,
     val date: Int,
+)
+
+data class LinkAttachment(
+    val link: Link
 ) : Attachment {
-    override val type = "document"
+    override val type = "link"
 }
+
 data class Link(
     val url: String,
     val title: String,
@@ -95,9 +122,8 @@ data class Link(
     val description: String,
     val photo: Any,
     val preview_url: String
-) : Attachment {
-    override val type = "link"
-}
+)
+
 // Объект-сервис для работы с записями
 object WallService {
     private var posts = emptyArray<Post>() // массив, хранящий все посты
@@ -134,24 +160,20 @@ object WallService {
                 likes = post.likes,
                 comments = post.comments,
                 attachments = post.attachments
-                )
+            )
             return true // возвращаем true, чтобы указать успешное обновление записи
         }
 
         return false // возвращаем false, если запись с таким id не найдена
     }
-
 }
 // Функция добавления Файла в архив
 
 fun main() {
-  // Добавляем файлы в архив к посту
+    // Добавляем файлы в архив к посту
+    val photo = Photo(1, 1, 1, 1, "Photo 1", 123456789, 800, 600)
     val newAttachments: Array<Attachment> = arrayOf(
-        Photo(1, 1, 1, 1, "Photo 1", 123456789, 800, 600),
-        Audio(2, 2, "Artist 1", "Title 1", 300, "http://audio-url.com", 1, 1, 1, 123456789, 0, 1),
-        Video(3, 3, "Title 1", "Description 1", 600),
-        Document(4, 4, "Document 1", 1024, "txt", "http://document-url.com", 123456789),
-        Link("http://link-url.com", "Link 1", "Caption 1", "Description 1", Any(), "http://preview-url.com")
+        PhotoAttachment(photo = photo),
     )
 
     val likes = Likes(1, true, true, true)
@@ -172,7 +194,6 @@ fun main() {
         original = null,
         attachments = newAttachments
     )
-
 
     // Добавляем пост
     val addedPost = WallService.add(post1)
