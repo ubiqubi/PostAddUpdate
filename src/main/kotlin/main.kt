@@ -181,11 +181,9 @@ object WallService {
             )
             return true // возвращаем true, чтобы указать успешное обновление записи
         }
-
         return false // возвращаем false, если запись с таким id не найдена
     }
 }
-// Функция добавления Файла в архив
 
 fun main() {
     // Добавляем файлы в архив к посту
@@ -227,13 +225,9 @@ fun main() {
 
     // Создаем комментарий
     val comment1 = Comments(1, 1, 1, "Классный пост!", newAttachments)
-    // Добавляем коммент в массив
-    val addComment = createComment(1, comment1)
     // добавление комментария в пост
-    val addComPost = addedPost.copy(comments = addComment)
+    val addComPost = addedPost.copy(comments = createComment(1, comment1))
     println("комментарий: ${addComPost.comments.component1().text}")
-   
-
 
 }
 
