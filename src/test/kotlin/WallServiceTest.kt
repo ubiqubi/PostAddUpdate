@@ -1,15 +1,21 @@
+import WallService.createComment
 import junit.framework.TestCase.*
 import org.junit.Before
 import org.junit.Test
 
 
 class WallServiceTest {
-
+    @Test (expected = PostNotFoundException::class)
+    fun shouldThrow() {
+        val comment = Comments(1, 1, 1, "Комментарий", emptyArray())
+        createComment(2, comment) // код с вызовом функции, которая должна выкинуть PostNotFoundException
+    }
 
     @Test
     fun WallServiceUpdateADD() {
         val likes = Likes(1, true, true, true)
-        val comments = Comments(1, true, true, true, true)
+        val comments: Array<Comments> = arrayOf(
+        )
         val post = Post(
             id = 1,
             toId = 1,
@@ -22,7 +28,8 @@ class WallServiceTest {
             friendsOnly = true,
             likes = likes,
             comments = comments,
-            original = null
+            original = null,
+            attachments = emptyArray()
         )
         val service = WallService
         service.add(post)
@@ -38,7 +45,8 @@ class WallServiceTest {
     @Test
     fun WallServiceUpdateTrue() {
         val likes = Likes(1, true, true, true)
-        val comments = Comments(1, true, true, true, true)
+        val comments: Array<Comments> = arrayOf(
+        )
         val service = WallService
         service.add(
             Post(
@@ -53,7 +61,8 @@ class WallServiceTest {
                 friendsOnly = true,
                 likes = likes,
                 comments = comments,
-                original = null
+                original = null,
+                attachments = emptyArray()
             )
         )
         service.add(
@@ -69,7 +78,8 @@ class WallServiceTest {
                 friendsOnly = true,
                 likes = likes,
                 comments = comments,
-                original = null
+                original = null,
+                attachments = emptyArray()
             )
         )
         val update = Post(
@@ -84,7 +94,8 @@ class WallServiceTest {
             friendsOnly = true,
             likes = likes,
             comments = comments,
-            original = null
+            original = null,
+            attachments = emptyArray()
         )
 
         val result = service.update(update)
@@ -96,8 +107,9 @@ class WallServiceTest {
     @Test
     fun WallServiceUpdateFalse() {
         val likes = Likes(1, true, true, true)
-        val comments = Comments(1, true, true, true, true)
         val service = WallService
+        val comments: Array<Comments> = arrayOf(
+        )
         service.add(
             Post(
                 id = 1,
@@ -111,7 +123,8 @@ class WallServiceTest {
                 friendsOnly = true,
                 likes = likes,
                 comments = comments,
-                original = null
+                original = null,
+                attachments = emptyArray()
             )
         )
         service.add(
@@ -127,7 +140,8 @@ class WallServiceTest {
                 friendsOnly = true,
                 likes = likes,
                 comments = comments,
-                original = null
+                original = null,
+                attachments = emptyArray()
             )
         )
         val update = Post(
@@ -142,11 +156,16 @@ class WallServiceTest {
             friendsOnly = true,
             likes = likes,
             comments = comments,
-            original = null
+            original = null,
+            attachments = emptyArray()
         )
 
         val result = service.update(update)
 
         assertFalse(result)
     }
+
+
 }
+
+
