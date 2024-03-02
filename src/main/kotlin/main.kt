@@ -138,7 +138,7 @@ object WallService {
         nextId = 1
     }
 
-    // метод для добавления поста в массив
+    // Функция для добавления поста в массив
     fun add(post: Post): Post {
         val newPost = post.copy(id = nextId) // копируем пост и присваиваем ему новый id
         posts += newPost // добавляем пост в массив
@@ -160,7 +160,7 @@ object WallService {
         }
     }
 
-    // метод для обновления записи
+    // Функция для обновления записи
     fun update(post: Post): Boolean {
         val index = posts.indexOfFirst { it.id == post.id } // ищем индекс записи с id, соответствующим post
 
@@ -190,9 +190,7 @@ object WallService {
 fun main() {
     // Добавляем файлы в архив к посту
     val photo = Photo(1, 1, 1, 1, "Photo 1", 123456789, 800, 600)
-    val newAttachments: Array<Attachment> = arrayOf(
-        PhotoAttachment(photo = photo),
-    )
+    val newAttachments: Array<Attachment> = arrayOf(PhotoAttachment(photo = photo))
     val likes = Likes(1, true, true, true)
 
     // Пример использования методов add и update
@@ -218,8 +216,7 @@ fun main() {
 
 
     // Обновляем пост
-    val updatedPost =
-        addedPost.copy(text = "Привет! Это обновленный пост.")
+    val updatedPost = addedPost.copy(text = "Привет! Это обновленный пост.")
     val isUpdated = WallService.update(updatedPost)
 
     if (isUpdated) {
@@ -235,8 +232,7 @@ fun main() {
     // добавление комментария в пост
     val addComPost = addedPost.copy(comments = addComment)
     println("комментарий: ${addComPost.comments.component1().text}")
-    // Пример Ошибки
-    createComment(0, comment1)
+   
 
 
 }
