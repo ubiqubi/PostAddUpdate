@@ -5,15 +5,44 @@ import org.junit.Test
 
 
 class WallServiceTest {
-    @Test (expected = PostNotFoundException::class)
+    @Test(expected = PostNotFoundException::class)
     fun shouldThrow() {
         val comment = Comments(1, 1, 1, "Комментарий", emptyArray())
         createComment(2, comment) // код с вызовом функции, которая должна выкинуть PostNotFoundException
     }
-    @Test (expected = PostNotFoundException::class)
+
+    @Test
     fun noShouldThrow() {
+        val likes = Likes(1, true, true, true)
+        val comments: Array<Comments> = arrayOf(
+        )
+        // Создаем пост
+        val post = Post(
+            id = 1,
+            toId = 1,
+            fromId = 1,
+            createdBy = 1,
+            date = 1631302800,
+            text = "Привет, это первый пост!",
+            replyOwnerId = 1,
+            replyPostId = 1,
+            friendsOnly = true,
+            likes = likes,
+            comments = comments,
+            original = null,
+            attachments = emptyArray()
+        )
+
+        // Добавляем пост
+        val addedPost = WallService.add(post)
+        // Создаем комментарий
         val comment = Comments(1, 1, 1, "Комментарий", emptyArray())
-        createComment(1, comment) // код с вызовом функции, которая должна выкинуть PostNotFoundException
+        // Добавляем коммент в архив
+        val commentArray: Array<Comments> = arrayOf(createComment(1, comment))
+        // Добавляем архив комментариев в пост
+        val addComPost = addedPost.copy(comments = commentArray)
+        // Проверяем результат
+        assertEquals(addComPost.comments.component1().text, "Комментарий")
     }
 
     @Test
