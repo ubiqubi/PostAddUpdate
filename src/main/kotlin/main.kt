@@ -148,13 +148,13 @@ object WallService {
     }
 
     // Функция для создания комментария к посту
-    fun createComment(postId: Int, comment: Comments): Array<Comments> {
+    fun createComment(postId: Int, comment: Comments): Comments {
         // Проверяем, существует ли в массиве posts пост с id равным postId
         val post = posts.find { it.id == postId }
         if (post != null) {
             // Добавляем комментарий в массив comments
             comments += comment
-            return comments
+            return comment
         } else {
             throw PostNotFoundException("Пост ID $postId не найден")
         }
@@ -223,11 +223,20 @@ fun main() {
         println("Не удалось обновить пост с id ${updatedPost.id}")
     }
 
-    // Создаем комментарий
+    // Создаем комментарии
     val comment1 = Comments(1, 1, 1, "Классный пост!", newAttachments)
-    // добавление комментария в пост
-    val addComPost = addedPost.copy(comments = createComment(1, comment1))
-    println("комментарий: ${addComPost.comments.component1().text}")
+    val comment2 = Comments(2, 1, 1, "Пост так себе!", newAttachments)
+    // Кладем комментарии в массив
+    val commentArray: Array<Comments> = arrayOf(
+        createComment(1, comment1),
+        createComment(1, comment2)
+    )
+    // добавление массива комментариев в пост
+    val addComPost = addedPost.copy(comments = commentArray)
+    println(
+        "комментарий: ${addComPost.comments.component1().text}" +
+                "\nкомментарий: ${addComPost.comments.component2().text}"
+    )
 
 }
 

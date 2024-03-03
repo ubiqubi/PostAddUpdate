@@ -10,6 +10,11 @@ class WallServiceTest {
         val comment = Comments(1, 1, 1, "Комментарий", emptyArray())
         createComment(2, comment) // код с вызовом функции, которая должна выкинуть PostNotFoundException
     }
+    @Test (expected = PostNotFoundException::class)
+    fun noShouldThrow() {
+        val comment = Comments(1, 1, 1, "Комментарий", emptyArray())
+        createComment(1, comment) // код с вызовом функции, которая должна выкинуть PostNotFoundException
+    }
 
     @Test
     fun WallServiceUpdateADD() {
